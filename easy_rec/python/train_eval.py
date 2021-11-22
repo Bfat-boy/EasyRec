@@ -12,6 +12,8 @@ from easy_rec.python.utils import config_util
 from easy_rec.python.utils import fg_util
 from easy_rec.python.utils import hpo_util
 
+print("1111111111111111111111111111")
+
 if tf.__version__ >= '2.0':
   tf = tf.compat.v1
 
@@ -111,4 +113,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
+  print("===> 程序入口, 正式开始...")
   tf.app.run()

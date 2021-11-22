@@ -24,6 +24,7 @@ from easy_rec.python.utils.load_class import get_register_class_meta
 if tf.__version__ >= '2.0':
   tf = tf.compat.v1
 
+print("===> 第2步: 注册model元类，调用get_register_class_meta")
 _PREDICTOR_CLASS_MAP = {}
 _register_abc_meta = get_register_class_meta(
     _PREDICTOR_CLASS_MAP, have_abstract_class=True)

@@ -14,12 +14,17 @@ import six
 import tensorflow as tf
 from tensorflow.core.protobuf import saved_model_pb2
 
+print("===> 来到main...")
 import easy_rec
 from easy_rec.python.builders import strategy_builder
 from easy_rec.python.compat import exporter
+print("===> 导入exporter...")
+print("===> 开始导入Input，Input又会导入sampler, 在sampler中会抛GraphLearn is not installed异常. Input也会调用get_register_class_meta")
 from easy_rec.python.input.input import Input
+print("===> 导入Input完毕...")
 from easy_rec.python.model.easy_rec_estimator import EasyRecEstimator
 from easy_rec.python.model.easy_rec_model import EasyRecModel
+print("===> 导入EasyRecModel...")
 from easy_rec.python.protos.train_pb2 import DistributionStrategy
 from easy_rec.python.utils import config_util
 from easy_rec.python.utils import estimator_utils
@@ -38,6 +43,8 @@ else:
   gfile = tf.gfile
   GPUOptions = tf.GPUOptions
   ConfigProto = tf.ConfigProto
+
+print("\n===>Now, We are in file : " + __file__ + " !!!!\n")
 
 load_class.auto_import()
 
@@ -84,6 +91,7 @@ def _get_input_fn(data_config,
 
 
 def _create_estimator(pipeline_config, distribution=None, params={}):
+  print("===> _create_estimator()")
   model_config = pipeline_config.model_config
   train_config = pipeline_config.train_config
   gpu_options = GPUOptions(allow_growth=False)
@@ -94,7 +102,9 @@ def _create_estimator(pipeline_config, distribution=None, params={}):
       inter_op_parallelism_threads=train_config.inter_op_parallelism_threads,
       intra_op_parallelism_threads=train_config.intra_op_parallelism_threads)
   session_config.device_filters.append('/job:ps')
+  print("===> EasyRecModel.create_class()创建model元类, model_config.model_class=" + str(model_config.model_class))
   model_cls = EasyRecModel.create_class(model_config.model_class)
+  print("===> 创建model元类DONE: " + str(model_cls))
 
   save_checkpoints_steps = None
   save_checkpoints_secs = None
@@ -118,8 +128,10 @@ def _create_estimator(pipeline_config, distribution=None, params={}):
       eval_distribute=distribution,
       session_config=session_config)
 
+  print("===> 创建estimator")
   estimator = EasyRecEstimator(
       pipeline_config, model_cls, run_config=run_config, params=params)
+  print("===> 创建estimator DONE.")
   return estimator, run_config
 
 

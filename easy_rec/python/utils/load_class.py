@@ -198,6 +198,7 @@ def register_class(class_map, class_name, cls):
 
 
 def get_register_class_meta(class_map, have_abstract_class=True):
+  print("===> 调用get_register_class_meta，参数class_map=" + str(class_map))
 
   class RegisterABCMeta(ABCMeta):
 

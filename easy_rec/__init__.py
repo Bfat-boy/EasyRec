@@ -8,6 +8,8 @@ import tensorflow as tf
 
 from easy_rec.version import __version__
 
+print("===> 第1步，先import " + __file__ + " 模块. 调用顺序: train_eval.py-->import easy_rec.python.main-->import easy_rec" )
+
 curr_dir, _ = os.path.split(__file__)
 parent_dir = os.path.dirname(curr_dir)
 sys.path.insert(0, parent_dir)
@@ -15,11 +17,15 @@ sys.path.insert(0, parent_dir)
 logging.basicConfig(
     level=logging.INFO, format='[%(asctime)s][%(levelname)s] %(message)s')
 
+print("===> 开始导入Predictor...")
 from easy_rec.python.inference.predictor import Predictor  # isort:skip  # noqa: E402
+print("===> 导入Predictor完毕...")
 from easy_rec.python.main import evaluate  # isort:skip  # noqa: E402
+print("===> 导入main.evaluate完毕...")
 from easy_rec.python.main import distribute_evaluate  # isort:skip  # noqa: E402
 from easy_rec.python.main import export  # isort:skip  # noqa: E402
 from easy_rec.python.main import train_and_evaluate  # isort:skip  # noqa: E402
+print("===> " + __file__ + " 导入完毕！")
 
 try:
   import tensorflow_io.oss
