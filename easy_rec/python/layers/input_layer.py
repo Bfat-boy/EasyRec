@@ -4,7 +4,9 @@ import tensorflow as tf
 
 from easy_rec.python.compat import regularizers
 from easy_rec.python.compat.feature_column import feature_column
+print('===> ' + __file__ + ' 中导入feature_column...')
 from easy_rec.python.feature_column.feature_column import FeatureColumnParser
+print('===> ' + __file__ + ' 导入feature_column完毕.')
 from easy_rec.python.feature_column.feature_group import FeatureGroup
 from easy_rec.python.layers import variational_dropout_layer
 from easy_rec.python.protos.feature_config_pb2 import WideOrDeep

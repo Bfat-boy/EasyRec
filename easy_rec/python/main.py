@@ -44,9 +44,9 @@ else:
   GPUOptions = tf.GPUOptions
   ConfigProto = tf.ConfigProto
 
-print("\n===>Now, We are in file : " + __file__ + " !!!!\n")
-
+print("\n===> " + __file__ + " 开始调用load_class.auto_import(), 导入预定义的模块\n")
 load_class.auto_import()
+print("\n===> " + __file__ + " 全部导入完成!!\n")
 
 # when version of tensorflow > 1.8 strip_default_attrs set true will cause
 # saved_model inference core, such as:
@@ -255,6 +255,7 @@ def train_and_evaluate(pipeline_config_path, continue_train=False):
 def _train_and_evaluate_impl(pipeline_config, continue_train=False):
   # Tempoary for EMR
   if (not is_on_pai()) and 'TF_CONFIG' in os.environ:
+    print('===> 分布式环境配置...')
     tf_config = json.loads(os.environ['TF_CONFIG'])
     # for ps on emr currently evaluator is not supported
     # the cluster has one chief instead of master
@@ -270,6 +271,8 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
       os.environ['TF_CONFIG'] = json.dumps(tf_config)
 
   train_config = pipeline_config.train_config
+  print('===> train_config : ' + str(train_config))
+
   data_config = pipeline_config.data_config
   # feature_configs = pipeline_config.feature_configs
   feature_configs = config_util.get_compatible_feature_configs(pipeline_config)
