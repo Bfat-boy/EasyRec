@@ -277,6 +277,7 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
   # feature_configs = pipeline_config.feature_configs
   feature_configs = config_util.get_compatible_feature_configs(pipeline_config)
 
+  print('===> train_distribute : ' +  str(train_config.train_distribute))
   if train_config.train_distribute != DistributionStrategy.NoStrategy\
       and train_config.sync_replicas:
     logging.warning(
