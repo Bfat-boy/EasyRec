@@ -19,7 +19,9 @@ from easy_rec.python.compat.early_stopping import stop_if_no_decrease_hook
 from easy_rec.python.compat.early_stopping import stop_if_no_increase_hook
 from easy_rec.python.protos.pipeline_pb2 import EasyRecConfig
 from easy_rec.python.protos.train_pb2 import DistributionStrategy
+print('===> ' + __file__ + ' 文件中，开始导入estimator_utils...')
 from easy_rec.python.utils import estimator_utils
+print('===> 导入estimator_utils完毕.')
 
 if tf.__version__ >= '2.0':
   tf = tf.compat.v1
