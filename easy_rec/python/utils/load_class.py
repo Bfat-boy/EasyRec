@@ -180,6 +180,7 @@ def auto_import(user_path=None):
 
   for dir_path, recursive_import in pre_defined_dirs:
     for pkg_info in pkgutil.iter_modules([dir_path]):
+      print('===> auto_import: pkg_info=' + str(pkg_info))
       import_pkg(pkg_info, prefix_to_remove)
 
     if recursive_import:
