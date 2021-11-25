@@ -573,6 +573,7 @@ class Input(six.with_metaclass(_meta_type, object)):
                   tf.estimator.ModeKeys.PREDICT):
         # build dataset from self._config.input_path
         self._mode = mode
+        print('===> _input_fn 处理输入数据')
         dataset = self._build(mode, params)
         return dataset
       elif mode is None:  # serving_input_receiver_fn for export SavedModel
