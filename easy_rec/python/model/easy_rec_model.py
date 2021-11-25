@@ -33,6 +33,7 @@ class EasyRecModel(six.with_metaclass(_meta_type, object)):
                features,
                labels=None,
                is_training=False):
+    print('===> EasyRecModel 初始化...')
     self._base_model_config = model_config
     self._model_config = model_config
     self._is_training = is_training
@@ -77,6 +78,7 @@ class EasyRecModel(six.with_metaclass(_meta_type, object)):
     return l2_regularization
 
   def build_input_layer(self, model_config, feature_configs):
+    print('===> EasyRecModel 执行build_input_layer...')
     self._input_layer = input_layer.InputLayer(
         feature_configs,
         model_config.feature_groups,

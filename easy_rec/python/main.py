@@ -309,8 +309,8 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
     pipeline_config.train_config.separate_save = True
 
   distribution = strategy_builder.build(train_config)
-  estimator, run_config = _create_estimator(
-      pipeline_config, distribution=distribution)
+  print('===> 创建estimator')
+  estimator, run_config = _create_estimator(pipeline_config, distribution=distribution)
 
   master_stat_file = os.path.join(pipeline_config.model_dir, 'master.stat')
   version_file = os.path.join(pipeline_config.model_dir, 'version')

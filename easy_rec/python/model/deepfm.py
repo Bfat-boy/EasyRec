@@ -20,6 +20,7 @@ class DeepFM(RankModel):
                features,
                labels=None,
                is_training=False):
+    print('===> DeepFM初始化....')
     super(DeepFM, self).__init__(model_config, feature_configs, features,
                                  labels, is_training)
     assert self._model_config.WhichOneof('model') == 'deepfm', \
