@@ -39,6 +39,7 @@ class EasyRecEstimator(tf.estimator.Estimator):
         model_dir=pipeline_config.model_dir,
         config=run_config,
         params=params)
+    print('model_fn 是懒加载的，只有真正需要计算时才会开始调用model_fn')
 
   @property
   def feature_configs(self):
@@ -67,6 +68,9 @@ class EasyRecEstimator(tf.estimator.Estimator):
     return self._pipeline_config.export_config
 
   def _train_model_fn(self, features, labels, run_config):
+    print('===> 调用_train_model_fn')
+
+    print('===> 创建 model 对象, model_cls 是:' + str(self._model_cls))
     model = self._model_cls(
         self.model_config,
         self.feature_configs,
@@ -435,6 +439,7 @@ class EasyRecEstimator(tf.estimator.Estimator):
         export_outputs=export_outputs)
 
   def _model_fn(self, features, labels, mode, config, params):
+    print('===> 调用_model_fn')
     os.environ['tf.estimator.mode'] = mode
     os.environ['tf.estimator.ModeKeys.TRAIN'] = tf.estimator.ModeKeys.TRAIN
     if mode == tf.estimator.ModeKeys.TRAIN:

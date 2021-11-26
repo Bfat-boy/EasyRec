@@ -207,10 +207,10 @@ def get_register_class_meta(class_map, have_abstract_class=True):
     def __new__(mcs, name, bases, attrs):
       newclass = super(RegisterABCMeta, mcs).__new__(mcs, name, bases, attrs)
       register_class(class_map, name, newclass)
-      print('===> get_register_class_meta.__new__: class_map=' + str(class_map))
-      print('===> get_register_class_meta.__new__: mcs=' + str(mcs))
+      # print('===> get_register_class_meta.__new__: class_map=' + str(class_map))
+      # print('===> get_register_class_meta.__new__: mcs=' + str(mcs))
       print('===> get_register_class_meta.__new__: name=' + str(name))
-      print('===> get_register_class_meta.__new__: bases=' + str(bases))
+      # print('===> get_register_class_meta.__new__: bases=' + str(bases))
 
       @classmethod
       def create_class(cls, name):

@@ -75,9 +75,12 @@ def _get_input_fn(data_config,
   Returns:
     subclass of Input
   """
+  print('===>data_config.InputType.items(): ' + str(data_config.InputType.items()))
   input_class_map = {y: x for x, y in data_config.InputType.items()}
+  print('===>data_config.input_type: ' + str(data_config.input_type))
   input_cls_name = input_class_map[data_config.input_type]
   input_class = Input.create_class(input_cls_name)
+  print('===>input_class: ' + str(input_class))
 
   task_id, task_num = estimator_utils.get_task_index_and_num()
   input_obj = input_class(
@@ -129,8 +132,7 @@ def _create_estimator(pipeline_config, distribution=None, params={}):
       session_config=session_config)
 
   print("===> 创建estimator")
-  estimator = EasyRecEstimator(
-      pipeline_config, model_cls, run_config=run_config, params=params)
+  estimator = EasyRecEstimator(pipeline_config, model_cls, run_config=run_config, params=params)
   print("===> 创建estimator DONE.")
   return estimator, run_config
 
@@ -309,7 +311,7 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
     pipeline_config.train_config.separate_save = True
 
   distribution = strategy_builder.build(train_config)
-  print('===> 创建estimator')
+  print('===> 即将创建estimator...')
   estimator, run_config = _create_estimator(pipeline_config, distribution=distribution)
 
   master_stat_file = os.path.join(pipeline_config.model_dir, 'master.stat')
