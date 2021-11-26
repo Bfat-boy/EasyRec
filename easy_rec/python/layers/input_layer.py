@@ -36,10 +36,10 @@ class InputLayer(object):
     self._feature_groups = {
         x.group_name: FeatureGroup(x) for x in feature_groups_config
     }
-    print('===> input_layer.InputLayer._feature_groups : ' + str(_feature_groups))
+    print('===> input_layer.InputLayer._feature_groups : ' + str(self._feature_groups))
 
     wide_and_deep_dict = self.get_wide_deep_dict()
-    print('===> input_layer.InputLayer.wide_and_deep_dict :' + str(_feature_groups))
+    print('===> input_layer.InputLayer.wide_and_deep_dict :' + str(wide_and_deep_dict))
 
     self._fc_parser = FeatureColumnParser(
         feature_configs,
@@ -148,6 +148,13 @@ class InputLayer(object):
 
     Returns:
       dict of { feature_name : WideOrDeep }
+    """
+    """
+      enum WideOrDeep {
+        DEEP = 0;
+        WIDE = 1;
+        WIDE_AND_DEEP = 2;
+      }
     """
     wide_and_deep_dict = {}
     for fg_name in self._feature_groups.keys():
