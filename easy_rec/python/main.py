@@ -313,10 +313,12 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
   distribution = strategy_builder.build(train_config)
   print('===> 即将创建estimator...')
   estimator, run_config = _create_estimator(pipeline_config, distribution=distribution)
+  print('===> estimator创建完毕.')
 
   master_stat_file = os.path.join(pipeline_config.model_dir, 'master.stat')
   version_file = os.path.join(pipeline_config.model_dir, 'version')
   if estimator_utils.is_chief():
+    print('===> is_chief')
     _check_model_dir(pipeline_config.model_dir, continue_train)
     config_util.save_pipeline_config(pipeline_config, pipeline_config.model_dir)
     with gfile.GFile(version_file, 'w') as f:
@@ -330,14 +332,18 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
     logging.warn('will train INFINITE number of steps')
   else:
     logging.info('train_steps = %d' % train_steps)
-  # create train input
+
+  print('===> create train input')
   train_input_fn = _get_input_fn(data_config, feature_configs, train_data)
-  # Currently only a single Eval Spec is allowed.
   train_spec = tf.estimator.TrainSpec(
       input_fn=train_input_fn, max_steps=train_steps)
-  # create eval spec
+
+  print('===> create eval spec')
   eval_spec = _create_eval_export_spec(pipeline_config, eval_data)
+
   from easy_rec.python.compat import estimator_train
+
+  print('===> 开始训练并评估')
   estimator_train.train_and_evaluate(estimator, train_spec, eval_spec)
   logging.info('Train and evaluate finish')
 

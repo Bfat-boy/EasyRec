@@ -39,7 +39,7 @@ class EasyRecEstimator(tf.estimator.Estimator):
         model_dir=pipeline_config.model_dir,
         config=run_config,
         params=params)
-    print('model_fn 是懒加载的，只有真正需要计算时才会开始调用model_fn')
+    print('===> model_fn 是懒加载的，只有真正需要计算时才会开始调用model_fn')
 
   @property
   def feature_configs(self):
