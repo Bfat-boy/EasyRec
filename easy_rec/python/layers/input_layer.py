@@ -36,7 +36,11 @@ class InputLayer(object):
     self._feature_groups = {
         x.group_name: FeatureGroup(x) for x in feature_groups_config
     }
+    print('===> input_layer.InputLayer._feature_groups : ' + str(_feature_groups))
+
     wide_and_deep_dict = self.get_wide_deep_dict()
+    print('===> input_layer.InputLayer.wide_and_deep_dict :' + str(_feature_groups))
+
     self._fc_parser = FeatureColumnParser(
         feature_configs,
         wide_and_deep_dict,

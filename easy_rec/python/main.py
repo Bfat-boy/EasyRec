@@ -343,7 +343,7 @@ def _train_and_evaluate_impl(pipeline_config, continue_train=False):
 
   from easy_rec.python.compat import estimator_train
 
-  print('===> 开始训练并评估')
+  print('\n\n===> *********************** 开始训练并评估 ********************\n\n')
   estimator_train.train_and_evaluate(estimator, train_spec, eval_spec)
   logging.info('Train and evaluate finish')
 

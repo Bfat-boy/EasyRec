@@ -41,6 +41,7 @@ class DeepFM(RankModel):
 
   def build_input_layer(self, model_config, feature_configs):
     # overwrite create input_layer to support wide_output_dim
+    print('===> DeepFM 执行build_input_layer...')
     has_final = len(model_config.deepfm.final_dnn.hidden_units) > 0
     if not has_final:
       assert model_config.deepfm.wide_output_dim == model_config.num_class
