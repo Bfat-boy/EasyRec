@@ -102,6 +102,7 @@ class FeatureColumnParser(object):
 
     for config in self._feature_configs:
       assert isinstance(config, FeatureConfig)
+      print('===> config:' + str(config))
       try:
         if config.feature_type == config.IdFeature:
           self.parse_id_feature(config)
