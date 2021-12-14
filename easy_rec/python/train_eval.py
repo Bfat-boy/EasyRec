@@ -4,15 +4,19 @@ import json
 import logging
 import os
 
+print('===> 1.导入tensorflow')
 import tensorflow as tf
+print('===> 2.导入tensorflow file_io')
 from tensorflow.python.lib.io import file_io
 
+print('===> 3.导入easy_rec.python.main._train_and_evaluate_impl')
 from easy_rec.python.main import _train_and_evaluate_impl
+print('===> 4.导入easy_rec.python.utils')
 from easy_rec.python.utils import config_util
 from easy_rec.python.utils import fg_util
 from easy_rec.python.utils import hpo_util
 
-print("1111111111111111111111111111")
+print("===> train_eval 导入完毕!!!")
 
 if tf.__version__ >= '2.0':
   tf = tf.compat.v1
