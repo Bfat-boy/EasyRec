@@ -215,7 +215,6 @@ def get_register_class_meta(class_map, have_abstract_class=True):
 
       @classmethod
       def create_class(cls, name):
-        print('===> class_map = ' + str(class_map))
         if name in class_map:
           return class_map[name]
         else:
