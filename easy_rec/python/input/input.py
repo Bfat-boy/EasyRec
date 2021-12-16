@@ -23,9 +23,11 @@ if tf.__version__ >= '2.0':
 
 _INPUT_CLASS_MAP = {}
 _meta_type = get_register_class_meta(_INPUT_CLASS_MAP, have_abstract_class=True)
+print('===> 在easy_rec.python.input.input.py中，执行get_register_class_meta完毕.')
 
 
 class Input(six.with_metaclass(_meta_type, object)):
+  print('===> 在easy_rec.python.input.input.py中，不会自动创建Input对象,但会加载Input类，执行到此处.')
 
   def __init__(self,
                data_config,
@@ -33,6 +35,7 @@ class Input(six.with_metaclass(_meta_type, object)):
                input_path,
                task_index=0,
                task_num=1):
+    print('===> 在easy_rec.python.input.input.py中，创建Input对象吗')
     self._data_config = data_config
 
     # tf.estimator.ModeKeys.*, only available before
@@ -595,3 +598,6 @@ class Input(six.with_metaclass(_meta_type, object)):
           return tf.estimator.export.ServingInputReceiver(features, inputs)
 
     return _input_fn
+  print('===> 22在easy_rec.python.input.input.py中，不会自动创建Input对象,但会加载Input类，执行到此处.')
+
+print('===> easy_rec.python.input.input.py加载完毕.')
