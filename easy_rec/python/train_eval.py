@@ -111,6 +111,7 @@ def main(argv):
       _train_and_evaluate_impl(pipeline_config, FLAGS.continue_train)
     else:
       config_util.auto_expand_share_feature_configs(pipeline_config)
+      print('===> pipeline_config 会被写入到 experiments/deepfm/pipeline.config 中，可查看该配置文件 <===')
       _train_and_evaluate_impl(pipeline_config, FLAGS.continue_train)
   else:
     raise ValueError('pipeline_config_path should not be empty when training!')
