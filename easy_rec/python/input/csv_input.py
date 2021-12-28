@@ -65,6 +65,8 @@ class CSVInput(Input):
       logging.info('train files[%d]: %s' %
                    (len(file_paths), ','.join(file_paths)))
       dataset = tf.data.Dataset.from_tensor_slices(file_paths)
+      print('===> sess.run(dataset.make_one_shot_iterator().get_next())=' + 'b../github/EasyRec/data/test/dwd_avazu_ctr_deepmodel_10w.csv')
+
       if self._data_config.shuffle:
         # shuffle input files
         dataset = dataset.shuffle(len(file_paths))
@@ -86,6 +88,7 @@ class CSVInput(Input):
             self._data_config.shuffle_buffer_size,
             seed=2020,
             reshuffle_each_iteration=True)
+      print('===> self.num_epochs=' + str(self.num_epochs))
       dataset = dataset.repeat(self.num_epochs)
     else:
       logging.info('eval files[%d]: %s' %
