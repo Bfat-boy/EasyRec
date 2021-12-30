@@ -99,6 +99,34 @@ class CSVInput(Input):
     dataset = dataset.batch(self._data_config.batch_size)
     dataset = dataset.map(
         self._parse_csv, num_parallel_calls=num_parallel_calls)
+    
+    print(""" ===> 此时的dataset为:
+           {
+             'hour': array([b'10', b'10', b'10'], dtype=object),
+             'c1': array([b'1005', b'1005', b'1002'], dtype=object),
+             'banner_pos': array([b'0', b'0', b'0'], dtype=object),
+             'site_id': array([b'85f751fd', b'4bf5bbe2', b'b15e894b'], dtype=object),
+             'site_domain': array([b'c4e18dd6', b'6b560cc1', b'c4e18dd6'], dtype=object),
+             'site_category': array([b'50e219e0', b'28905ebd', b'50e219e0'], dtype=object),
+             'app_id': array([b'0e8e4642', b'ecad2386', b'ecad2386'], dtype=object),
+             'app_domain': array([b'b408d42a', b'7801e8d9', b'7801e8d9'], dtype=object),
+             'app_category': array([b'09481d60', b'07d7df22', b'07d7df22'], dtype=object),
+             'device_id': array([b'a99f214a', b'a99f214a', b'25a0da4e'], dtype=object),
+             'device_ip': array([b'5deb445a', b'447d4613', b'1783ac3d'], dtype=object),
+             'device_model': array([b'f4fffcd0', b'cdf6ea96', b'12edfe21'], dtype=object),
+             'device_type': array([b'1', b'1', b'0'], dtype=object),
+             'device_conn_type': array([b'0', b'0', b'0'], dtype=object),
+             'c14': array([b'2098', b'2373', b'2399'], dtype=object),
+             'c15': array([b'32', b'32', b'32'], dtype=object),
+             'c16': array([b'5', b'5', b'5'], dtype=object),
+             'c17': array([b'238', b'272', b'275'], dtype=object),
+             'c18': array([b'0', b'3', b'0'], dtype=object),
+             'c19': array([b'56', b'5', b'4'], dtype=object),
+             'c20': array([b'0', b'0', b'0'], dtype=object),
+             'c21': array([b'5', b'3', b'8'], dtype=object),
+             'click': array([1, 1, 0])
+         }
+    """)
     if self._data_config.ignore_error:
       dataset = dataset.apply(ignore_errors)
     dataset = dataset.prefetch(buffer_size=self._prefetch_size)

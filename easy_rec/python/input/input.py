@@ -60,6 +60,9 @@ class Input(six.with_metaclass(_meta_type, object)):
     self._input_field_defaults = [
         x.default_val for x in data_config.input_fields
     ]
+    print('===> self._input_field_types=' + str(self._input_field_types))
+    print('===> self._input_field_defaults' + str(self._input_field_defaults))
+
     self._label_fields = list(data_config.label_fields)
     self._label_sep = list(data_config.label_sep)
     self._label_dim = list(data_config.label_dim)
@@ -582,6 +585,7 @@ class Input(six.with_metaclass(_meta_type, object)):
         # build dataset from self._config.input_path
         self._mode = mode
         print('===> _input_fn 处理输入数据')
+        print('===> 调用具体子类的_build方法')
         dataset = self._build(mode, params)
         return dataset
       elif mode is None:  # serving_input_receiver_fn for export SavedModel
